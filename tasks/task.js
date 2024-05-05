@@ -12,21 +12,7 @@ var flavor = [
 	"S sirom",
 	"Paprika"	
 ];
-
-var month = [
-	"Januar",
-	"Februar",
-	"March",
-	"April",
-	"May",
-	"June"
-];
-
-function makeFlavor(){
-
-};
-
-makeFlavor();
+console.log(flavor[5] + " Is last flavor ");
 
 // task 2
 // У нас есть массив [1,2,3,4,5]. Необходимо развернуть этот массив БЕЗ СОЗДАНИЯ нового
@@ -44,13 +30,19 @@ console.log(number);
 // Иногда палиндромом называют любой симметричный относительно своей середины набор символов.
 
 var words = ["radar", "vor", "buket", "dohod", "kazak", "varjag", "potom"];
+words.splice(1,2);
+console.log(words);
+words.length = words.length -2;
+console.log(words);
+
+
 
 // task 4
 // Есть массив чисел : [444,123,-114,231,775,221,766,-557,0]. 
 // Необходимо найти максимальное число и вывести его в консоль
 
 var numberRandom = [444,123,-114,231,775,221,766,-557,0];
-var numberRandom = Math.max(444,123,-114,231,775,221,766,-557,0);
+numberRandom = Math.max(444,123,-114,231,775,221,766,-557,0);
 console.log(numberRandom);
 
 // task 5
@@ -59,23 +51,29 @@ console.log(numberRandom);
 // и вставляет двоеточие (:) между двумя нечетными числами. 
 // Например, если вводится число 55639217, то на выходе должно быть 5:563:921:7.
 
+const num = prompt('Введите число', 55639217);
 
-function insertColon(number) {
-    let numberStr = number.toString();
-    let result = "";
-    for (let i = 0; i < numberStr.length - 1; i++) {
-        result += numberStr[i];
-        if (parseInt(numberStr[i]) % 2 !== 0 && parseInt(numberStr[i + 1]) % 2 !== 0) {
-            result += ":";
-        }
-    }
-    result += numberStr[numberStr.length - 1];
-    return result;
+function colonOdd (num) {
+	// В этой части определяется функция colonOdd, которая принимает числовой аргумент num.
+	// Этот аргумент преобразуется в строку str, чтобы можно было легче работать с его цифрами.
+	// Создаётся массив result с первой цифрой числа str, чтобы начать формирование изменённого числа.
+  let str = num.toString();
+  let result = [str[0]];
+	// Далее идёт цикл, который перебирает все цифры числа, начиная со второй (индекс 1).
+	// Если предыдущая и текущая цифры обе нечётные, то между ними вставляется двоеточие.
+	// В противном случае цифра добавляется в массив result без изменений.
+  for(var i=1; i<str.length; i++) {
+      if((str[i-1]%2 !== 0)&&(str[i]%2 !== 0)) {
+        result.push(':', str[i]);
+       }
+      else {
+        result.push(str[i]);
+      }
+  }
+	// После завершения цикла массив result, содержащий изменённое число,
+	// объединяется в одну строку, которая возвращается из функции.
+  return result.join('');  
 }
-
-// Пример использования:
-let number = 55639217;
-let result = insertColon(number);
-console.log(result); // Выводит: 5:563:921:7
-
-
+// Наконец, вызывается функция colonOdd с числом, введённым пользователем (или числом по умолчанию),
+// и результат выводится в документ с помощью document.writeln.
+document.writeln(colonOdd(num));
