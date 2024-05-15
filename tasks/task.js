@@ -12,7 +12,8 @@ var flavor = [
 	"S sirom",
 	"Paprika"	
 ];
-console.log(flavor[5] + " Is last flavor ");
+
+console.log(flavor.at(-1));
 
 // task 2
 // У нас есть массив [1,2,3,4,5]. Необходимо развернуть этот массив БЕЗ СОЗДАНИЯ нового
@@ -20,7 +21,7 @@ console.log(flavor[5] + " Is last flavor ");
 // Используйте только те конструкции, которые мы проходили на уроке.
 
 var number = [1, 2, 3, 4, 5];
-number.splice(0, 5, 5,4,3,2,1)
+number.reverse();
 console.log(number);
 
 // task 3
@@ -29,13 +30,27 @@ console.log(number);
 // Палиндро́м — число (например, 404), буквосочетание, слово или текст, одинаково читающееся в обоих направлениях.
 // Иногда палиндромом называют любой симметричный относительно своей середины набор символов.
 
+// для начало, попробуй написать функцию, что будет определять, слово полифил или нет
+//потом как ты научишся определять полифилы, прикрути это к массиву
+// тоесть делай цикл и каждую итерацию используй ранее написанный код
 var words = ["radar", "vor", "buket", "dohod", "kazak", "varjag", "potom"];
-words.splice(1,2);
-console.log(words);
-words.length = words.length -2;
-console.log(words);
+function palindrome(str) {
+	const strArray = str.split("");
+	strArray.reverse();
+	const newStr = strArray.join("");
 
+	if(str == newStr) {
+		console.log(str + " - is Polindrome");
+	} else {
+		console.log(str + " - is Not Polindrome");
+	};
+};
 
+const Arr = ["radar", "vor", "buket", "dohod", "kazak", "varjag", "potom"];
+
+for(let u = 0; u < Arr.length; u++) {
+	palindrome(Arr[u]);
+};
 
 // task 4
 // Есть массив чисел : [444,123,-114,231,775,221,766,-557,0]. 
@@ -51,29 +66,22 @@ console.log(numberRandom);
 // и вставляет двоеточие (:) между двумя нечетными числами. 
 // Например, если вводится число 55639217, то на выходе должно быть 5:563:921:7.
 
-const num = prompt('Введите число', 55639217);
+function insertNumber() {
+const number = 55639217;
+const numberString = number.toString();
+const numberArray = numberString.split("");
+const newNumberArray = [];
 
-function colonOdd (num) {
-	// В этой части определяется функция colonOdd, которая принимает числовой аргумент num.
-	// Этот аргумент преобразуется в строку str, чтобы можно было легче работать с его цифрами.
-	// Создаётся массив result с первой цифрой числа str, чтобы начать формирование изменённого числа.
-  let str = num.toString();
-  let result = [str[0]];
-	// Далее идёт цикл, который перебирает все цифры числа, начиная со второй (индекс 1).
-	// Если предыдущая и текущая цифры обе нечётные, то между ними вставляется двоеточие.
-	// В противном случае цифра добавляется в массив result без изменений.
-  for(var i=1; i<str.length; i++) {
-      if((str[i-1]%2 !== 0)&&(str[i]%2 !== 0)) {
-        result.push(':', str[i]);
-       }
-      else {
-        result.push(str[i]);
-      }
-  }
-	// После завершения цикла массив result, содержащий изменённое число,
-	// объединяется в одну строку, которая возвращается из функции.
-  return result.join('');  
+for(let n = 0; n < numberArray.length; n++) {
+	newNumberArray.push(numberArray[n]);
+
+	if(numberArray[n] % 2 === 0) {
+		if(numberArray[n+1] % 2 === 0) {
+			newNumberArray.push(":");
+		};
+	};
+};
+console.log(`newNumberArray ---`, newNumberArray);
 }
-// Наконец, вызывается функция colonOdd с числом, введённым пользователем (или числом по умолчанию),
-// и результат выводится в документ с помощью document.writeln.
-document.writeln(colonOdd(num));
+
+insertNumber();

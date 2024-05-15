@@ -1,6 +1,5 @@
 // МАССИВЫ.
 // Массив - это обьект или является разновидностью обьектов, а есть у массива определенные методы.
-
 var student1 = "Aleksey Ivanov";
 		student2 = "Maria Ivanova";
 		student3 = "Denis Matvejev"
