@@ -66,22 +66,20 @@ console.log(numberRandom);
 // и вставляет двоеточие (:) между двумя нечетными числами. 
 // Например, если вводится число 55639217, то на выходе должно быть 5:563:921:7.
 
-function insertNumber() {
-const number = 55639217;
-const numberString = number.toString();
-const numberArray = numberString.split("");
-const newNumberArray = [];
+const num = prompt('Введите число', 55639217);
 
-for(let n = 0; n < numberArray.length; n++) {
-	newNumberArray.push(numberArray[n]);
-
-	if(numberArray[n] % 2 === 0) {
-		if(numberArray[n+1] % 2 === 0) {
-			newNumberArray.push(":");
-		};
-	};
-};
-console.log(`newNumberArray ---`, newNumberArray);
+function insertNumber (num) {
+  let str = num.toString();
+  let res = [str[0]];
+  for(var i=1; i<str.length; i++) {
+      if((str[i-1]%2 !== 0)&&(str[i]%2 !== 0)) {
+        res.push(':', str[i]);
+       }
+      else {
+        res.push(str[i]);
+      }
+  }
+  return res.join('');  
 }
+console.log(insertNumber(num));
 
-insertNumber();
